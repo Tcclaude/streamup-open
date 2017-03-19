@@ -5,5 +5,19 @@
     <md-slide-toggle (change)="isDarkTheme = !isDarkTheme" [checked]="isDarkTheme"  color="primary">
       Auto Sync
     </md-slide-toggle>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div>
+        
+        <div class="input-group">
+          
+          <input type="text" [(ngModel)]="folder"  class="form-control" id="exampleInputAmount" placeholder="Amount">
+        </div>
+        
+      </div>
+      <button type="button" class="btn btn-large btn-block btn-default" (click)="createFolder(folder)" >Create Folder</button>
+      
+    </div>
+    
   </main>
 </div>

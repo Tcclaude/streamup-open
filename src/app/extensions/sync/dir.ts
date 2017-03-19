@@ -1,14 +1,18 @@
 var os = require('os');
 var fs = require('fs');
+import electron = require('electron');
+let { ipcMain } = electron;
 
 export class Mkdir {
     private dir: string;
-    constructor(dir: string) {
+    constructor() {
+        ipcMain.on('create-dir', (res) => {
+            console.log('git instruction down here');
+        });
 
-        this.dir = dir;
     }
 
-    public create(): boolean {
+    public create(dir: string): boolean {
 
         let newDir = os.homedir() + '/' + this.dir;
         fs.exists(newDir, function (params, status) {
@@ -28,3 +32,5 @@ export class Mkdir {
         return true;
     }
 }
+//auto run function! to work any time anywhere!
+new Mkdir();
