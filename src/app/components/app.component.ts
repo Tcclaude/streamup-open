@@ -10,7 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
  */
 @Component({
     // The selector is what angular internally uses
-    selector: 'ae-app', // <app></app>
+    selector: 'sbox', // <app></app>
     styleUrls: ['./app.theme.scss'],
     encapsulation: ViewEncapsulation.None,
     template: `

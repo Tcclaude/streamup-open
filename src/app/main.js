@@ -1,41 +1,160 @@
+"use strict";
+var electron = require('electron');
+var ipcMain = electron.ipcMain;
+var app = electron.app;
+var BrowserWindow = electron.BrowserWindow;
+var mainWindow;
+var iconPath = __dirname + '/dist/img/app-icon.png';
+// var isOnline = require('is-online');
+var Menu = electron.Menu;
 /**
- * Include our app
+ * We are loading all electron works(main process work here as for now we don't have a clear picture on how we can do it better this is a temporal solution we do have.)
+ *
  */
-const {app, BrowserWindow } = require('electron');
-
-// browser-window creates a native window
-let mainWindow = null;
-
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
+// var dir_1 = require('./src/backend/dir');
+// new dir_1.Mkdir('Sbox').create();
+var menuTemplate = [
+    {
+        label: 'Sbox',
+        submenu: [
+            {
+                label: 'Exit',
+                accelerator: 'Cmd+Q',
+                click: function () {
+                    global.terminate();
+                }
+            }
+        ]
+    },
+    {
+        label: 'Edit',
+        submenu: [
+            {
+                label: 'Undo',
+                accelerator: 'Cmd+Z',
+                selector: 'undo:'
+            },
+            {
+                label: 'Redo',
+                accelerator: 'Shift+Cmd+Z',
+                selector: 'redo:'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Cut',
+                accelerator: 'Cmd+X',
+                selector: 'cut:'
+            },
+            {
+                label: 'Copy',
+                accelerator: 'Cmd+C',
+                selector: 'copy:'
+            },
+            {
+                label: 'Paste',
+                accelerator: 'Cmd+V',
+                selector: 'paste:'
+            },
+            {
+                label: 'Select All',
+                accelerator: 'Cmd+A',
+                selector: 'selectAll:'
+            }
+        ]
+    },
+];
+var menu = Menu.buildFromTemplate(menuTemplate);
+var settingsWindow;
+var shouldQuit = false;
+global.updateStatus = (function () {
+    var status = '';
+    return {
+        get: function () {
+            return status;
+        },
+        set: function (value) {
+            status = value;
+            if (settingsWindow) {
+                settingsWindow.webContents.send('UPDATE_STATUS', value);
+            }
+        }
+    };
+})();
+global.terminate = function () {
+    shouldQuit = true;
     app.quit();
-  }
-});
-
-const createWindow = () => {
-  // Initialize the window to our specified dimensions
-  mainWindow = new BrowserWindow({ width: 1200, height: 900 });
-
-  // Tell Electron where to load the entry point from
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
-
-  // Clear out the main window when the app is closed
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
 };
-
-app.on('ready', createWindow);
-
-app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) {
-    createWindow();
-  }
+if (process.platform === 'linux') {
+    app.commandLine.appendSwitch('enable-transparent-visuals');
+    app.commandLine.appendSwitch('disable-gpu');
+}
+// var shouldStartInstance = app.makeSingleInstance(function(commandLine, workingDirectory) {
+//     if (mainWindow) {
+//         if (!mainWindow.isVisible()) {
+//             mainWindow.show();
+//         }
+//         if (mainWindow.isMinimized()) {
+//             mainWindow.restore();
+//         }
+//         mainWindow.focus();
+//     }
+//     return true;
+// });
+// if (shouldStartInstance) {
+//     app.quit();
+//     return;
+// }
+var path = require('path');
+app.on('ready', function () {
+    mainWindow = new BrowserWindow({
+        width: 960,
+        height: 640,
+        frame: false,
+        transparent: true,
+        icon: path.join(__dirname, '../../assets/images/icon.png')
+    });
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
+    // mainWindow.loadURL('http://localhost:4200/');
+    // mainWindow.webContents.openDevTools();
+    //deal with data back and forth
+    //  const windowID = BrowserWindow.getFocusedWindow().id
+    ipcMain.on('load-contents', function (event, arg) {
+        console.log(arg);
+    });
+    mainWindow.on('close', function (e) {
+        if (!shouldQuit) {
+            e.preventDefault();
+            mainWindow.hide();
+        }
+    });
+    mainWindow.on('closed', function () {
+        mainWindow = null;
+    });
+    settingsWindow = new BrowserWindow({
+        width: 600,
+        height: 480,
+        frame: false,
+        resizable: false,
+        transparent: true,
+        icon: path.join(__dirname, '../assets/images/icon.png')
+    });
+    settingsWindow.loadURL('file://' + __dirname + '/settings.html');
+    settingsWindow.hide();
+    // settingsWindow.webContents.openDevTools();
+    settingsWindow.on('close', function (e) {
+        if (!shouldQuit) {
+            e.preventDefault();
+            settingsWindow.hide();
+        }
+    });
+    settingsWindow.on('closed', function () {
+        settingsWindow = null;
+    });
+    global.settingsWindow = settingsWindow;
+    if (process.platform === "darwin") {
+        Menu.setApplicationMenu(menu);
+    }
+    ;
 });

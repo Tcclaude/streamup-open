@@ -23,7 +23,7 @@ const BrowserWindow = remote.BrowserWindow;
 /**
  * Basic configuration like Endpoint URL's, API version..
  */
-const options = require('./../config.json');
+const options = require('./config.json');
 
 @Injectable()
 export class Authentication {
