@@ -14,23 +14,24 @@ let { ipcRenderer } = electron;
 })
 export class AppComponent implements OnInit {
     isDarkTheme: boolean = false;
-    
     db = new DB();
+    dir = new Dir();
     constructor() {
 
     }
     ngOnInit() {
-        ipcRenderer.send('load-contents', 'Sure We are doing it right');
-        new Dir().create('Sbox');
+
+        this.dir.create('Sbox');
     }
     isAutoSync(): boolean {
-        ipcRenderer.send('load-contents', 'it is checked sure');
+
         return false;
     }
     createFolder(name: String) {
+
+        this.dir.create('Sbox/' + name);
         
-        ipcRenderer.send('create-dir', name);
-        //TODO implements this method
+
     }
     checkAuthentication() { }
 }

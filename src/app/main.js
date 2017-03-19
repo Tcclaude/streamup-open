@@ -11,8 +11,7 @@ var Menu = electron.Menu;
  * We are loading all electron works(main process work here as for now we don't have a clear picture on how we can do it better this is a temporal solution we do have.)
  *
  */
-// var dir_1 = require('./src/backend/dir');
-// new dir_1.Mkdir('Sbox').create();
+
 var menuTemplate = [
     {
         label: 'Sbox',
@@ -120,7 +119,7 @@ app.on('ready', function () {
     // mainWindow.webContents.openDevTools();
     //deal with data back and forth
     //  const windowID = BrowserWindow.getFocusedWindow().id
-    ipcMain.on('load-contents', function (event, arg) {
+    ipcMain.on('create-dir', function (event, arg) {
         console.log(arg);
     });
     mainWindow.on('close', function (e) {
