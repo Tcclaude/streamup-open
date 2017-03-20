@@ -66,4 +66,4 @@ config.json
 .vscode
 
 #removeMyAlg
-./.testingDir.js
+./testingDir.js
