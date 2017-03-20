@@ -5,7 +5,6 @@ dir.split('/').forEach(function(e) {
     console.log(e);
 }, this);
 
-
 //git folders ids(online) and save them in sqlite3 db
 
 var fs = require('fs'),

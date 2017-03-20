@@ -1,6 +1,7 @@
 export class Git {
 
-    constructor() {
+    init(dir: string) {
+        
     }
 
 }

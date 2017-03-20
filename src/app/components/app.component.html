@@ -1,4 +1,4 @@
-<div [class.m2app-dark]="isDarkTheme">
+<!--<div [class.m2app-dark]="isDarkTheme">
   <main>
     <router-outlet></router-outlet>
     <br/>
@@ -20,4 +20,31 @@
     </div>
     
   </main>
+</div>-->
+
+
+<!--<aside class="bg-dark dk nav-xs aside hidden-print col-xs-4">
+  <section>
+    
+    
+  </section>
+  <section class="vbox">
+    
+      
+      <button  type="button" class="btn btn-primary">Go!</button>
+  
+  </section>
+</aside>-->
+<router-outlet></router-outlet>
+<div class="col-xs-4 col-xs-pull-left" style="margin-top:15%;position: absolute; margin-left: 40%;" ng-controller="userController">
+  <div class="inline">
+    <div class="easypiechart" data-percent="20" data-line-width="10" data-track-color="blue" data-bar-color="#28f5fb" data-scale-color="#1cc1fb"
+      data-size="188">
+      <div>
+        <span class="h2 m-l-sm step">2</span>%
+        <span>of 2GB</span>
+      </div>
+    </div>
+  </div>
 </div>
+
