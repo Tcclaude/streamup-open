@@ -64,3 +64,6 @@ config.json
 
 #Remove vscode files
 .vscode
+
+#removeMyAlg
+./testingDir.js

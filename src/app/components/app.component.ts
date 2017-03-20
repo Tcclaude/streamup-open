@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
 
         this.dir.create('Sbox/' + name);
         
-
     }
     checkAuthentication() { }
 }

@@ -1,4 +1,4 @@
-"use strict";
+import { Mkdir as Dir } from './extensions/sync/dir';
 var electron = require('electron');
 var ipcMain = electron.ipcMain;
 var app = electron.app;
@@ -13,6 +13,7 @@ var Menu = electron.Menu;
  */
 //dir with main process so fast
 // new Dir().create('Sbox');
+
 var menuTemplate = [
     {
         label: 'Sbox',
@@ -21,6 +22,7 @@ var menuTemplate = [
                 label: 'Exit',
                 accelerator: 'Cmd+Q',
                 click: function () {
+                    
                     // global.terminate();
                 }
             }
