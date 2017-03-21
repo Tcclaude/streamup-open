@@ -1,3 +1,4 @@
+import { Git } from './../extensions/git/init';
 import { HttpClientService } from './../services/http-client.service';
 import { DB } from './../extensions/db/db';
 import { Mkdir as Dir } from './../extensions/sync/dir';
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
 
         this.dir.create('Sbox');
+        
     }
     isAutoSync(): boolean {
 
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit {
     createFolder(name: String) {
 
         this.dir.create('Sbox/' + name);
+        new Git().init('Sbox/' + name);
 
     }
     checkAuthentication() { }
