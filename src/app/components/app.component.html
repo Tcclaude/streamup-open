@@ -1,4 +1,4 @@
-<!--<div [class.m2app-dark]="isDarkTheme">
+<!--<div>
   <main>
     <router-outlet></router-outlet>
     <br/>
@@ -23,18 +23,11 @@
 </div>-->
 
 
-<!--<aside class="bg-dark dk nav-xs aside hidden-print col-xs-4">
-  <section>
-    
-    
-  </section>
-  <section class="vbox">
-    
-      
-      <button  type="button" class="btn btn-primary">Go!</button>
-  
-  </section>
-</aside>-->
+
+
+<!--Authenticate-->
+<!--<button *ngIf='!authenticated' (click)='authenticate()'>Authenticate with Github</button>-->
+
 <router-outlet></router-outlet>
 <div class="col-xs-4 col-xs-pull-left" style="margin-top:15%;position: absolute; margin-left: 40%;" ng-controller="userController">
   <div class="inline">
@@ -47,4 +40,3 @@
     </div>
   </div>
 </div>
-

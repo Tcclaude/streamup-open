@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   clear: both;
   font-weight: normal;
+  
   line-height: 1.5625;
   color: #000000;
   white-space: nowrap;
@@ -986,8 +987,9 @@ body.container {
     display: none;
   }
   .nav-xs {
-    width: 200px;
-    height: 582px;
+    width: 80px;
+    height: 613px;
+    margin-top: -43px;
     margin-left: -2%;
   }
   .nav-xs .slimScrollDiv,
