@@ -43,8 +43,6 @@ export class LoginComponent {
             });
         });
     }
-
-  
     _(x) {
         return document.getElementById(x);
     }
