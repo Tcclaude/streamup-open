@@ -60,3 +60,7 @@ body {
     a {
       color: #68217A;
     }
+    .glyph{
+      width: 10px;
+      height: 10px;
+    }
