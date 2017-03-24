@@ -66,4 +66,5 @@ config.json
 .vscode
 
 #removeMyAlg
-./testingDir.js
+testingDir.js
+src/app/extensions/db/node_modules

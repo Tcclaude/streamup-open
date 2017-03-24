@@ -1,6 +1,6 @@
 
-// import Sequelize = require('sequelize');
-// var db = require('../../../../models/index.js');
+import Sequelize = require('sequelize');
+var db = require('./models/index');
 
 interface DirObject {
     folder_id: number;
