@@ -19,9 +19,14 @@ export class AppComponent implements OnInit {
     db = new DB();
     dir = new Dir();
     constructor(private http: HttpClientService) {
-        //testing if http works very well.!
-        this.http.get('http://localhost:8000/api/folders/list/undefined').subscribe(result => {
-            console.log(result);
+        
+        this.http.get('http://localhost:8000/api/folders/list/undefined').subscribe(res => {
+            
+            res.json().forEach(e => {
+                this.db.saveFolder(e);
+                this.createFolder(e.name);
+            });
+            
         }, (err) => {
             console.log(err);
         });

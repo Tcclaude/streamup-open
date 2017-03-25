@@ -6,9 +6,7 @@ export class Mkdir {
    
     constructor() {
        
-
     }
-
     public create(dir: string): boolean {
         
         let newDir = os.homedir() + '/' + dir;
@@ -24,9 +22,7 @@ export class Mkdir {
 
                 });
             }
-
-        });
-        
+        });   
         return true;
     }
 }

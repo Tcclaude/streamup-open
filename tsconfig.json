@@ -7,6 +7,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "allowJs":true,
     "strictNullChecks": false,
     "baseUrl": "./src",
     "paths": {},
@@ -20,6 +21,8 @@
   },
   "exclude": [
     "node_modules",
+    "src/assets",
+    "src/app/dist",
     "dist"
   ],
   "awesomeTypescriptLoaderOptions": {

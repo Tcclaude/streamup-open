@@ -1,9 +1,16 @@
 <div>
   <!--Authenticate-->
   <!--<button *ngIf='!authenticated' (click)='authenticate()'>Authenticate with Github</button>-->
+  <style>
+    .glyph {
+      font-size: 30px;
+    }
+
+
+  </style>
   <aside class="bg-dark dk nav-xs aside  col-xs-3">
 
-    <section class="vbox">
+    <section class="vbox" style="margin-top: -80px">
       <h2>
         <i class="glyph glyph-close-pane" aria-hidden="true" id='filenablebtn' (click)='enableFilepanel()' style="cursor:pointer"></i>
         <i class="glyph glyph-close-pane" aria-hidden="true" id='filedisablelebtn' (click)='disableFilepanel()' style="display:none;cursor:pointer"></i>
