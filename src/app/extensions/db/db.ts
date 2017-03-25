@@ -37,7 +37,7 @@ export class DB {
         // });
     }
     saveFolder(data: DirObject) {
-        console.log(data);
+        // console.log(data);
         // db.sync({ force: true }).success(function (err) {
         //     db.Folder.create({
         //         data

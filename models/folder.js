@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     has_copy: DataTypes.STRING
 
   }, {
+    
     classMethods: {
       associate: function(models) {
         // associations can be defined here
