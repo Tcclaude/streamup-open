@@ -20,31 +20,45 @@ export class AppComponent implements OnInit {
     dir = new Dir();
     constructor(private http: HttpClientService) {
 
-        this.http.folders()
+        this.http.getFolders()
             .subscribe(res => {
                 res.forEach(e => {
                     this.db.saveFolder(e);
-                    if (e.parent == 0) {
+                    if (e.parent === 0) {
                         if (e.has_copy === 1) {
                             this.createFolder(e.name + '(' + e.copy_count + ')');
                         } else if (e.has_copy === 0) {
                             this.createFolder(e.name);
                         }
+                    }
+                });
 
-                    } else {
+            });
+        var tmp = [];
+        this.http.getSubFolders()
+            .subscribe(res => {
+                res.forEach(subf => {
+                    var oldId = 0;
+                    if (oldId !== subf.id) {
+                        oldId = subf.id;
+                        this.http.getPath(subf.id)
+                            .subscribe(res => {
+                                res.forEach(fpath => {
+                                    tmp.push(fpath.name);
+                                    console.log(tmp.join('/'));
+
+                                });
+                            });
 
                     }
 
                 });
-
-            }, (err) => {
-            //    Do report the error in more appropriate way in future.
             });
 
 
     }
     ngOnInit() {
-        // initially Create our application Dir 
+
         this.dir.create('Sbox');
 
     }

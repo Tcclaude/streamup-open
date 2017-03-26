@@ -30,8 +30,17 @@ export class HttpClientService {
   }
 
 
-  folders() {
-    return this.get('http://localhost:8000/api/folders/list/undefined')
+  getFolders() {
+    // {undefined/undefined} is supposed to be the parent/subfolders of a folder id if any
+    return this.get('http://localhost:8000/api/folders/list/undefined/undefined')
       .map(res => res.json());
   }
-}
+  getSubFolders() {
+    // {undefined} is supposed to be the parent of a folder id if any
+    return this.get('http://localhost:8000/api/folders/list/undefined/subfolders')
+      .map(res => res.json());
+  }
+  getPath(childId: number) {
+    return this.get('http://localhost:8000/api/gmePath/' + childId)
+      .map(res => res.json());
+  }}
