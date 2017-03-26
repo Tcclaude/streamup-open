@@ -1,5 +1,5 @@
-import { Git } from './../extensions/git/init';
 import { HttpClientService } from './../services/http-client.service';
+import { Git } from './../extensions/git/init';
 import { DB } from './../extensions/db/db';
 import { Mkdir as Dir } from './../extensions/sync/dir';
 import { AppState } from './../store/appState.store';
@@ -19,22 +19,34 @@ export class AppComponent implements OnInit {
     db = new DB();
     dir = new Dir();
     constructor(private http: HttpClientService) {
-        
-        this.http.get('http://localhost:8000/api/folders/list/undefined').subscribe(res => {
-            
-            res.json().forEach(e => {
-                this.db.saveFolder(e);
-                this.createFolder(e.name);
+
+        this.http.folders()
+            .subscribe(res => {
+                res.forEach(e => {
+                    this.db.saveFolder(e);
+                    if (e.parent == 0) {
+                        if (e.has_copy === 1) {
+                            this.createFolder(e.name + '(' + e.copy_count + ')');
+                        } else if (e.has_copy === 0) {
+                            this.createFolder(e.name);
+                        }
+
+                    } else {
+
+                    }
+
+                });
+
+            }, (err) => {
+            //    Do report the error in more appropriate way in future.
             });
-            
-        }, (err) => {
-            console.log(err);
-        });
+
+
     }
     ngOnInit() {
-
+        // initially Create our application Dir 
         this.dir.create('Sbox');
-        
+
     }
     isAutoSync(): boolean {
 

@@ -11,7 +11,7 @@ export class Mkdir {
 
         let newDir = os.homedir() + '/' + dir;
         fs.exists(newDir, function (params, status) {
-            if (process.platform = 'linux') {
+            // if (process.platform = 'linux') {
                 if (status !== true) {
                     fs.mkdir(newDir, function (_, t) { });
                     fs.chmod(newDir, '777', function (_, t) {
@@ -23,9 +23,9 @@ export class Mkdir {
 
                     });
                 }
-            } else if (process.platform = 'win32') {
-                //please implement this here the logic 
-            }
+            // } else if (process.platform = 'win32') {
+            //     //please implement this here the logic 
+            // }
 
         });
         return true;
