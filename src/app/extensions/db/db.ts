@@ -1,9 +1,7 @@
-
+import { models, sequelize } from './../../../../models/index';
 import Sequelize = require('sequelize');
-import db = require('../../../../models/index.js');
-
 export interface DirObject {
-    
+
     folder_id: number;
     name: string;
     copy_count: string;
@@ -37,13 +35,15 @@ export class DB {
         // });
     }
     saveFolder(data: DirObject) {
-        // console.log(data);
-        // db.sync({ force: true }).success(function (err) {
-        //     db.Folder.create({
-        //         data
-        //     }).success(function (folder) {
-        //         console.log('saved on disk:' + folder);
-        //     });
-        // });
+     
+        sequelize.sync({ force: true }).done(function () {
+            models.Folder.create({
+                name: 'richie',
+                parent_id: 1
+            }).done(function(res){
+                console.log(res);
+            });
+        });
+        
     }
 }

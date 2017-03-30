@@ -1,8 +1,9 @@
 "use strict";
+var electron_1 = require('electron');
 var electron = require('electron');
 var ipcMain = electron.ipcMain;
 var app = electron.app;
-var BrowserWindow = electron.BrowserWindow;
+// var BrowserWindow = electron.BrowserWindow;
 var mainWindow;
 var iconPath = __dirname + '/dist/img/app-icon.png';
 // var isOnline = require('is-online');
@@ -108,9 +109,11 @@ if (process.platform === 'linux') {
 // }
 var path = require('path');
 app.on('ready', function () {
-    mainWindow = new BrowserWindow({
-        width: 960,
-        height: 640,
+    mainWindow = new electron_1.BrowserWindow({
+        // width: 960,
+        width: 1380,
+        // height: 640,
+        height: 740,
         frame: false,
         transparent: true,
         icon: path.join(__dirname, '../../assets/images/icon.png')
@@ -132,7 +135,7 @@ app.on('ready', function () {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
-    settingsWindow = new BrowserWindow({
+    settingsWindow = new electron_1.BrowserWindow({
         width: 600,
         height: 480,
         frame: false,

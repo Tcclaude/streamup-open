@@ -9,6 +9,7 @@ var Mkdir = (function () {
     Mkdir.prototype.create = function (dir) {
         var newDir = os.homedir() + '/' + dir;
         fs.exists(newDir, function (params, status) {
+            // if (process.platform = 'linux') {
             if (status !== true) {
                 fs.mkdir(newDir, function (_, t) { });
                 fs.chmod(newDir, '777', function (_, t) {
@@ -18,6 +19,9 @@ var Mkdir = (function () {
                 fs.chmod(newDir, '777', function (_, t) {
                 });
             }
+            // } else if (process.platform = 'win32') {
+            //     //please implement this here the logic 
+            // }
         });
         return true;
     };

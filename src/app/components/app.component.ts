@@ -22,13 +22,13 @@ export class AppComponent implements OnInit {
 
         this.http.getFolders()
             .subscribe(res => {
-                res.forEach(e => {
-                    this.db.saveFolder(e);
-                    if (e.parent === 0) {
-                        if (e.has_copy === 1) {
-                            this.createFolder(e.name + '(' + e.copy_count + ')');
-                        } else if (e.has_copy === 0) {
-                            this.createFolder(e.name);
+                res.forEach(folder => {
+                    this.db.saveFolder(folder);
+                    if (folder.parent === 0) {
+                        if (folder.has_copy === 1) {
+                            this.createFolder(folder.name + '(' + folder.copy_count + ')');
+                        } else if (folder.has_copy === 0) {
+                            this.createFolder(folder.name);
                         }
                     }
                 });
@@ -45,8 +45,7 @@ export class AppComponent implements OnInit {
                             .subscribe(res => {
                                 res.forEach(fpath => {
                                     tmp.push(fpath.name);
-                                    console.log(tmp.join('/'));
-
+                                    
                                 });
                             });
 
