@@ -1,7 +1,9 @@
+import { configs } from './../extensions/db/config/configs';
+
 import * as cluster from 'cluster';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
-import { configs } from '../../../config/configs';
+
 import { transports, Logger } from 'winston';
 import { Request, Response } from 'express';
 

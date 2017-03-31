@@ -1,5 +1,7 @@
-import { FolderAttributes, FolderInstance } from './../src/app/interfaces/folder-interface';
-import { logger } from './../src/app/utils/logger';
+import { configs } from './../config/configs';
+import { FolderAttributes, FolderInstance } from './../../../interfaces/folder-interface';
+import { logger } from './../../../utils/logger';
+
 // import { ProductInstance } from "./var../src../app../interfaces/product-interface";
 // var fs = require('fs');
 // var path = require('path');
@@ -40,7 +42,7 @@ import * as cls from 'continuation-local-storage';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as SequelizeStatic from 'sequelize';
-import { configs } from '../config/configs';
+
 import { Sequelize } from 'sequelize';
 export interface SequelizeModels {
   Folder: SequelizeStatic.Model<FolderInstance, FolderAttributes>;

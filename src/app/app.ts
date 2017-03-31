@@ -1,3 +1,4 @@
+import { SyncComponent } from './extensions/sync/sync.component';
 import { enableProdMode, NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -9,7 +10,6 @@ import { Store, StoreModule } from '@ngrx/store';
 import { authStore, authInitialState } from './store/auth.store';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AppComponent } from './components/app.component';
 import { MaterialModule } from '@angular/material';
 import { routes } from './app.routes';
 import { Authentication } from './services/authentication';
@@ -25,8 +25,8 @@ import { Authentication } from './services/authentication';
         StoreModule.provideStore({ authStore }, { authStore: authInitialState }),
     ],
     providers: [Authentication],
-    declarations: [AppComponent, HomeComponent, LoginComponent],
-    bootstrap: [AppComponent]
+    declarations: [SyncComponent, HomeComponent, LoginComponent],
+    bootstrap: [SyncComponent]
 })
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,20 +1,24 @@
-import { HttpClientService } from './../services/http-client.service';
-import { Git } from './../extensions/git/init';
-import { DB } from './../extensions/db/db';
-import { Mkdir as Dir } from './../extensions/sync/dir';
-import { AppState } from './../store/appState.store';
+import { HttpClientService } from './../../services/http-client.service';
+import { Git } from './../git/init';
+import { DB } from './../db/db';
+import { Mkdir as Dir } from './dir';
+import { AppState } from './../../store/appState.store';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import electron = require('electron');
 let { ipcRenderer } = electron;
-
+// import Redis = require('ioredis');
+// import { Redis } from 'ioredis';
+// let redis = new Redis();
+import isOnline = require('is-online');
 @Component({
     selector: 'sbox',
-    styleUrls: ['./app.theme.scss'],
+    styleUrls: ['./sync.theme.scss'],
     encapsulation: ViewEncapsulation.None,
-    templateUrl: './app.component.html',
+    templateUrl: './sync.component.html',
     providers: [HttpClientService]
 })
-export class AppComponent implements OnInit {
+export class SyncComponent implements OnInit {
     isDarkTheme: boolean = false;
     db = new DB();
     dir = new Dir();
@@ -34,6 +38,7 @@ export class AppComponent implements OnInit {
                 });
 
             });
+        //TODO the subfolders not being injected inside the parent folder by now(need help on this).
         var tmp = [];
         this.http.getSubFolders()
             .subscribe(res => {
@@ -45,7 +50,7 @@ export class AppComponent implements OnInit {
                             .subscribe(res => {
                                 res.forEach(fpath => {
                                     tmp.push(fpath.name);
-                                    
+
                                 });
                             });
 
@@ -61,9 +66,28 @@ export class AppComponent implements OnInit {
         this.dir.create('Sbox');
 
     }
-    isAutoSync(): boolean {
+    isAutoSync(e) {
+        type toggle = 'true' | 'false';
+        
+    }
+    autoFetch() {
 
-        return false;
+        isOnline().then(online => {
+
+            if (!online) {
+                // redis.subscribe('folder-created');
+        //         redis.on('message', function (channel, message) {
+
+        //             let serialized = JSON.parse(message);
+        //             console.log(serialized);
+        //             //TODO understanding how to fetch file online and save on Disk using fs.createWriteStream :: new Buffer("utf-8") is faked don't know what i am doing!
+        //             // new Watcher().downloadOnFly('http://localhost:8000/api/downloads/file/' + serialized.data.fileHandle + '/' + serialized.data.folderId, serialized.data.fileName, '', function (res: boolean) {
+        //             //     console.log('done');
+        //             // });
+
+        //         });
+            }
+        });
     }
     createFolder(name: String) {
 
