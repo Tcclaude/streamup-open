@@ -9,7 +9,7 @@ const path = require('path');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-
+var nodeExternals = require('webpack-node-externals');
 /*
  * Config
  */
@@ -24,15 +24,16 @@ var config = {
     'vendor': './src/vendor.ts',
     'app': './src/app/app',
   },
-  // externals: [
-    
-  //   // function (context, request, callback) {
-  //   //   if (/^nodegit/.test(request))
-  //   //     return callback(null, 'commonjs' + " " + request);
-  //   //   callback();
+  externals: {
+    "ioredis": "Redis"
 
-  //   // },
-  // ],
+    // function (context, request, callback) {
+    //   if (/^nodegit/.test(request))
+    //     return callback(null, 'commonjs' + " " + request);
+    //   callback();
+
+    // },
+  },
 
   // Config for our build files
   output: {
@@ -163,3 +164,12 @@ var config = {
  */
 config.target = 'electron-renderer';
 module.exports = config;
+// module.exports = {
+// entry: path.resolve('./index.js'),
+// target: 'node', // in order to ignore built-in modules like path, fs, etc. 
+// externals: [nodeExternals()], // in order to ignore all modules in node_modules folder 
+// output: {
+//     filename: 'bundle.js',
+// }
+
+// };

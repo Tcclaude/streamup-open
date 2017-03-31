@@ -7,9 +7,9 @@ import { AppState } from './../../store/appState.store';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import electron = require('electron');
 let { ipcRenderer } = electron;
-// import Redis = require('ioredis');
-// import { Redis } from 'ioredis';
-// let redis = new Redis();
+import Redis = require('ioredis');
+
+let redis = new Redis();
 import isOnline = require('is-online');
 @Component({
     selector: 'sbox',
@@ -75,17 +75,17 @@ export class SyncComponent implements OnInit {
         isOnline().then(online => {
 
             if (!online) {
-                // redis.subscribe('folder-created');
-        //         redis.on('message', function (channel, message) {
+                redis.subscribe('folder-created');
+                redis.on('message', function (channel, message) {
 
-        //             let serialized = JSON.parse(message);
-        //             console.log(serialized);
+                    let serialized = JSON.parse(message);
+                    console.log(serialized);
         //             //TODO understanding how to fetch file online and save on Disk using fs.createWriteStream :: new Buffer("utf-8") is faked don't know what i am doing!
         //             // new Watcher().downloadOnFly('http://localhost:8000/api/downloads/file/' + serialized.data.fileHandle + '/' + serialized.data.folderId, serialized.data.fileName, '', function (res: boolean) {
         //             //     console.log('done');
         //             // });
 
-        //         });
+                });
             }
         });
     }
