@@ -9,7 +9,7 @@ const path = require('path');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-var nodeExternals = require('webpack-node-externals');
+// var nodeExternals = require('webpack-node-externals');
 /*
  * Config
  */

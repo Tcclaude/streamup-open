@@ -60,7 +60,7 @@ release
 src/app/dist
 
 #Remove configurations from version control
-config.json
+#config.json
 
 #Remove vscode files
 .vscode

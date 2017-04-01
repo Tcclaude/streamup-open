@@ -1,0 +1,10 @@
+{
+    "github": {
+        "client_id": "yourclientID",
+        "client_secret": "yoursecretkey",
+        "scopes": [
+            "user:email",
+            "notifications"
+        ]
+    }
+}
