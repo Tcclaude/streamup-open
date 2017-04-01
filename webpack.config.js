@@ -25,7 +25,21 @@ var config = {
     'app': './src/app/app',
   },
   externals: {
-    "ioredis": "Redis"
+    ioredis: {
+      commonjs: "ioredis",
+      amd: "ioredis",
+      root: "ioredis" // indicates global variable
+    },
+    sequelize: {
+      commonjs: "sequelize",
+      amd: "sequelize",
+      root: "sequelize" // indicates global variable
+    },
+    winston: {
+      commonjs: "winston",
+      amd: "winston",
+      root: "winston" // indicates global variable
+    }
 
     // function (context, request, callback) {
     //   if (/^nodegit/.test(request))
