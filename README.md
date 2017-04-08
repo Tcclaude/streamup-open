@@ -1,9 +1,5 @@
 
 [![Build Status](https://travis-ci.org/richard457/streamup-open.svg?branch=master)](https://travis-ci.org/richard457/streamup-open)
-
-
-
-
 [ ![Codeship Status for richard457/streamup-open](https://app.codeship.com/projects/fd358400-378b-0134-16e8-2691568e5d59/status?branch=master)](https://app.codeship.com/projects/165810)
 
 StreamupBoxDeskTopApp (hacking version) 
